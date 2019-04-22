@@ -1,3 +1,5 @@
 <resources>
-    <string name="app_name">CoolStock</string>
+    <string name="app_name">CoolStock </string>
+    <drawable name="clr_normal">#00000000</drawable>
+    <drawable name="clr_pressed">#ccc6c2</drawable>
 </resources>

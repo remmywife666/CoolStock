@@ -24,6 +24,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:textColor="#00deff"
+        android:background="@drawable/color_change_selector"
         android:text="点击获取验证码"/>
    </LinearLayout>
 

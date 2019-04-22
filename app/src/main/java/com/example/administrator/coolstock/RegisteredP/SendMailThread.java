@@ -1,4 +1,4 @@
-package com.example.administrator.coolstock.RegisteredThread;
+package com.example.administrator.coolstock.RegisteredP;
 
 
 import java.util.Properties;
@@ -45,7 +45,6 @@ public class SendMailThread extends Thread {
         props.put("mail.user","m15093887346@163.com");
         //访问SMTP服务时需要提供的密码，不是邮箱的登陆密码，是smtp服务的密码
         props.put("mail.password","LxLFS4wAGrl7LpRm");
-
         //构建授权信息，用于进行SMTP身份验证
         Authenticator authenticator =new Authenticator() {
             @Override
