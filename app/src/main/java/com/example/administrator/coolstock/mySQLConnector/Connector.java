@@ -34,6 +34,8 @@ public class Connector {
                     System.out.print(rs.getString("userId"));
                     System.out.print(rs.getString("userPassword"));
                 }
+                rs.close();
+                con.close();
             }
         }catch (ClassNotFoundException e){
             e.printStackTrace();

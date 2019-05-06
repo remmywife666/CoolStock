@@ -67,4 +67,11 @@
         android:textSize="20sp"
         android:textColor="#fcff00"
         android:text="注              册"/>
+
+
+    <!-- 用来显示报文返回结果 -->
+    <TextView
+        android:id="@+id/registered_result"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
 </LinearLayout>

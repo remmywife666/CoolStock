@@ -1,6 +1,9 @@
 package com.example.administrator.coolstock.RegisteredP;
 
 
+import android.util.Log;
+
+import java.security.Security;
 import java.util.Properties;
 
 import javax.mail.Authenticator;
@@ -40,11 +43,17 @@ public class SendMailThread extends Thread {
         final Properties props=new Properties();
         //表示SMTP发送邮件，需要进行身份验证
         props.put("mail.smtp.auth","true");
-        props.put("mail.smtp.host","smtp.163.com");
+        props.put("mail.smtp.host","smtp.qq.com");
+
+
         //smtp登陆的账号、密码；需开启smpt登陆
-        props.put("mail.user","m15093887346@163.com");
+        props.put("mail.user","2451697331@qq.com");
         //访问SMTP服务时需要提供的密码，不是邮箱的登陆密码，是smtp服务的密码
-        props.put("mail.password","LxLFS4wAGrl7LpRm");
+        props.put("mail.password","ukqdhvllqzqmebej");
+
+
+
+
         //构建授权信息，用于进行SMTP身份验证
         Authenticator authenticator =new Authenticator() {
             @Override
@@ -81,6 +90,10 @@ public class SendMailThread extends Thread {
             e.printStackTrace();
         }
     }
-
+//        public static void main(String[]args){
+//            SendMailThread d=new SendMailThread("1165592197@qq.com"
+//            ,"sdfsadfs","dfdf");
+//            d.start();
+//        }
 
 }
