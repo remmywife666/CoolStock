@@ -19,6 +19,9 @@ import com.example.administrator.coolstock.mySQLConnector.DBService;
 import com.example.administrator.coolstock.mySQLConnector.RegisteredMSQL;
 import com.example.administrator.coolstock.mySQLConnector.Test;
 
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
 import org.xml.sax.InputSource;
 import org.xml.sax.SAXException;
 import org.xml.sax.XMLReader;
@@ -168,36 +171,50 @@ public class Registered extends AppCompatActivity {
                 //创建Response获取返回对象
                 Response response=client.newCall(request).execute();
                 String responseData=response.body().string();
-                parseXMLWithSAX(responseData);
+                    parseJSONWithJSONObject(responseData);
+                    showResponse(responseData);
                 } catch (IOException e) {
                     e.printStackTrace();
                 }
             }
         }).start();
     }
-    /**
-     * 解析XML
-     */
-    private void parseXMLWithSAX(String xmlData){
-        try {
-            SAXParserFactory factory=SAXParserFactory.newInstance();
-            XMLReader xmlReader=factory.newSAXParser().getXMLReader();
-            RegisteredInfoHandler handler=new RegisteredInfoHandler();
-            //将ContentHandler的实例设置到XMLReader中
-            xmlReader.setContentHandler(handler);
-            //开始执行解析
-            xmlReader.parse(new InputSource(new StringReader(xmlData)));
-            showResponse(xmlData);
 
-        } catch (SAXException e) {
-            e.printStackTrace();
-        } catch (ParserConfigurationException e) {
-            e.printStackTrace();
-        } catch (IOException e) {
+    /**
+     * 解析json返回值
+     */
+    private void parseJSONWithJSONObject(String jsonData){
+        try {
+            JSONObject jsonObject =new JSONObject(jsonData);
+            String userId=jsonObject.getString("userId");
+            String message=jsonObject.getString("message");
+            Log.d("json",userId);
+            Log.d("json",message);
+        } catch (JSONException e) {
             e.printStackTrace();
         }
-
     }
+//    /**
+//     * 解析XML
+//     */
+//    private void parseXMLWithSAX(String xmlData){
+//        try {
+//            SAXParserFactory factory=SAXParserFactory.newInstance();
+//            XMLReader xmlReader=factory.newSAXParser().getXMLReader();
+//            RegisteredInfoHandler handler=new RegisteredInfoHandler();
+//            //将ContentHandler的实例设置到XMLReader中
+//            xmlReader.setContentHandler(handler);
+//            //开始执行解析
+////            xmlReader.parse(new InputSource(new StringReader(xmlData)));
+//
+//
+//        } catch (SAXException e) {
+//            e.printStackTrace();
+//        } catch (ParserConfigurationException e) {
+//            e.printStackTrace();
+//        }
+//
+//    }
     /**
      * UI操作
      */
