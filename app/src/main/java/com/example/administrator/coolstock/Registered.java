@@ -114,13 +114,13 @@ public class Registered extends AppCompatActivity {
                 String c = "" + randomNum;
                 String ck1 = registeredP.getText().toString();
                 String ck2 = registeredP1.getText().toString();
-//                if (c.equals(checkCode.getText().toString())&&ck1.equals(ck2)){
+                if (c.equals(checkCode.getText().toString())&&ck1.equals(ck2)){
                 Toast.makeText(Registered.this, "Success！", Toast.LENGTH_SHORT).show();
 
                 RegisteredWithHttpURLConnection();
             }
-//                }else{ Toast.makeText(Registered.this,"验证码错误或两次输入密码不一致",Toast.LENGTH_SHORT).show();}
-//            }
+                else{ Toast.makeText(Registered.this,"验证码错误或两次输入密码不一致",Toast.LENGTH_SHORT).show();}
+            }
         });
     }
     /**

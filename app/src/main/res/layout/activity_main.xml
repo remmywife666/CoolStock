@@ -1,15 +1,55 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".MainActivity">
+    android:background="#cccccc">
 
-    <Button
-        android:id="@+id/test_login"
+    <!-- 内容（显示各种fragment页面） -->
+    <RelativeLayout
+        android:id="@+id/main_content"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="testLogin"/>
+        android:layout_height="wrap_content">
+    </RelativeLayout>
 
-</android.support.constraint.ConstraintLayout>
+    <!-- 底部按钮 -->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="35dp"
+        android:background="#ffffff"
+        android:gravity="center"
+        android:layout_alignParentBottom="true"
+        android:orientation="horizontal">
+        <TextView
+            android:id="@+id/home"
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:layout_height="35dp"
+            android:gravity="center"
+            android:text="首页"
+            android:textColor="#000fff"/>
+        <TextView
+            android:id="@+id/stock_info"
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:layout_height="35dp"
+            android:gravity="center"
+            android:text="行情"
+            android:textColor="#605e5e"/>
+        <TextView
+            android:id="@+id/news"
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:layout_height="35dp"
+            android:gravity="center"
+            android:text="新闻"
+            android:textColor="#605e5e"/>
+        <TextView
+            android:id="@+id/user"
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:layout_height="35dp"
+            android:gravity="center"
+            android:text="用户"
+            android:textColor="#605e5e"/>
+    </LinearLayout>
+</RelativeLayout>

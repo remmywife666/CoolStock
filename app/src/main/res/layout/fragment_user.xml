@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+   <TextView
+       android:id="@+id/mark_userId"
+       android:layout_width="match_parent"
+       android:layout_height="wrap_content"
+       android:textSize="30dp"
+       android:gravity="center"
+       android:text="你好游客"/>
+
+    <Button
+        android:id="@+id/go_login"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="点击这里登陆"
+        />
+    <Button
+        android:id="@+id/go_register"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="点击这里注册"/>
+
+</LinearLayout>
