@@ -1,5 +1,6 @@
 package com.example.administrator.coolstock;
 
+import android.content.Intent;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentActivity;
 import android.support.v4.app.FragmentManager;
@@ -104,6 +105,8 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 this.switchFragment("homeFragment");
                 break;
             case R.id.stock_info:
+//                Intent intent=new Intent(MainActivity.this,StockAvtivity.class);
+//                startActivity(intent);
                 this.switchFragment("stockInfoFragment");
                 break;
             case R.id.news:

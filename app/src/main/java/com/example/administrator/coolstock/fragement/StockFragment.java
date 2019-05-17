@@ -13,12 +13,14 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.ListView;
 import android.widget.Toast;
 
 import com.example.administrator.coolstock.R;
+import com.example.administrator.coolstock.StockAvtivity;
 import com.example.administrator.coolstock.gsonParse.ParseStock;
 import com.example.administrator.coolstock.stockDB.StockInfo;
 import com.example.administrator.coolstock.util.HttpUtil;
@@ -78,16 +80,20 @@ public class StockFragment extends Fragment {
     public void onActivityCreated(Bundle savedInstanceState){
         super.onActivityCreated(savedInstanceState);
 
-
-
         queryStock();
-        Button parseStock=(Button)getActivity().findViewById(R.id.start_get_stock_info);
-        parseStock.setOnClickListener(new View.OnClickListener() {
+
+        listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
-            public void onClick(View v) {
-                requestStockInfo();
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                int stockId=stockInfoList.get(position).getStockCode();
+                String stockId1=Integer.toString(stockId);
+                Intent intent=new Intent(getActivity(),StockAvtivity.class);
+                intent.putExtra("stock_id",stockId1);
+                startActivity(intent);
+                getActivity().finish();
             }
         });
+
 
     }
 
@@ -167,78 +173,78 @@ public class StockFragment extends Fragment {
             progressDialog.dismiss();
         }
     }
-    public void requestStockInfo(){
-        new Thread(new Runnable() {
-            @Override
-            public void run() {
-                try {
-                    OkHttpClient client=new OkHttpClient.Builder()
-                            .connectTimeout(2,TimeUnit.SECONDS)
-                            .readTimeout(300,TimeUnit.SECONDS)
-                            .writeTimeout(300,TimeUnit.SECONDS)
-                            .build();
-
-                    Request request =new Request.Builder()
-                            .url("https://api.shenjian.io/?appid=ec68429f2164e4061cc89ba4e0dcff9b")
-                            .build();
-                    Response response = client.newCall(request).execute();
-
-                    String stockData=response.body().string();
-
-                    parseStockJSON(stockData);
-
-                } catch (IOException e) {
-                    e.printStackTrace();
-                }
-            }
-        }).start();
-
-    }
-
-
-
-    /**
-     * 解析股票数据
-     */
-
-    private void parseStockJSON(String stockData) {
-        try {
-            JSONObject stData = new JSONObject(stockData);
-            int status = stData.getInt("error_code");
-            JSONArray jsonArray1 = stData.getJSONArray("data");
-            String name1[]=new String[jsonArray1.length()];
-            if (status == 0) {
-            for (int i = 0; i < jsonArray1.length(); i++) {
-                String s = jsonArray1.getString(i);
-                JSONObject jsonObject = new JSONObject(s);
-                int code = jsonObject.getInt("code"); //代码
-                String name = jsonObject.getString("name"); //名称
-                Double changepercent = jsonObject.getDouble("changepercent"); //涨跌幅
-                Double trade = jsonObject.getDouble("trade"); //现价
-                Double open = jsonObject.getDouble("open"); //开盘价
-                Double high = jsonObject.getDouble("high"); //最高价
-                Double low = jsonObject.getDouble("low"); //最低价
-                Double settlement = jsonObject.getDouble("settlement"); //昨日收盘价
-                Double volume = jsonObject.getDouble("volume"); //成交量
-                Double turnoverratio = jsonObject.getDouble("turnoverratio"); //换手率
-                Double amount = jsonObject.getDouble("amount"); //成交额
-                Double pb = jsonObject.getDouble("pb"); //市净率
-                Double mktcap = jsonObject.getDouble("mktcap"); //总市值
-                Double nmc = jsonObject.getDouble("nmc"); //流通市值
-
-                name1[i]=jsonObject.getString("name");
-
-                Log.d("testparseStock", name1[i]+" "+i+" "+mktcap);
-            }
+//    public void requestStockInfo(){
+//        new Thread(new Runnable() {
+//            @Override
+//            public void run() {
+//                try {
+//                    OkHttpClient client=new OkHttpClient.Builder()
+//                            .connectTimeout(2,TimeUnit.SECONDS)
+//                            .readTimeout(300,TimeUnit.SECONDS)
+//                            .writeTimeout(300,TimeUnit.SECONDS)
+//                            .build();
+//
+//                    Request request =new Request.Builder()
+//                            .url("https://api.shenjian.io/?appid=ec68429f2164e4061cc89ba4e0dcff9b")
+//                            .build();
+//                    Response response = client.newCall(request).execute();
+//
+//                    String stockData=response.body().string();
+//
+//                    parseStockJSON(stockData);
+//
+//                } catch (IOException e) {
+//                    e.printStackTrace();
+//                }
+//            }
+//        }).start();
+//
+//    }
 
 
 
-        }
-            } catch(JSONException e){
-                e.printStackTrace();
-            }
-
-        }
+//    /**
+//     * 解析股票数据
+//     */
+//
+//    private void parseStockJSON(String stockData) {
+//        try {
+//            JSONObject stData = new JSONObject(stockData);
+//            int status = stData.getInt("error_code");
+//            JSONArray jsonArray1 = stData.getJSONArray("data");
+//            String name1[]=new String[jsonArray1.length()];
+//            if (status == 0) {
+//            for (int i = 0; i < jsonArray1.length(); i++) {
+//                String s = jsonArray1.getString(i);
+//                JSONObject jsonObject = new JSONObject(s);
+//                int code = jsonObject.getInt("code"); //代码
+//                String name = jsonObject.getString("name"); //名称
+//                Double changepercent = jsonObject.getDouble("changepercent"); //涨跌幅
+//                Double trade = jsonObject.getDouble("trade"); //现价
+//                Double open = jsonObject.getDouble("open"); //开盘价
+//                Double high = jsonObject.getDouble("high"); //最高价
+//                Double low = jsonObject.getDouble("low"); //最低价
+//                Double settlement = jsonObject.getDouble("settlement"); //昨日收盘价
+//                Double volume = jsonObject.getDouble("volume"); //成交量
+//                Double turnoverratio = jsonObject.getDouble("turnoverratio"); //换手率
+//                Double amount = jsonObject.getDouble("amount"); //成交额
+//                Double pb = jsonObject.getDouble("pb"); //市净率
+//                Double mktcap = jsonObject.getDouble("mktcap"); //总市值
+//                Double nmc = jsonObject.getDouble("nmc"); //流通市值
+//
+//                name1[i]=jsonObject.getString("name");
+//
+//                Log.d("testparseStock", name1[i]+" "+i+" "+mktcap);
+//            }
+//
+//
+//
+//        }
+//            } catch(JSONException e){
+//                e.printStackTrace();
+//            }
+//
+//        }
 
 
 }
