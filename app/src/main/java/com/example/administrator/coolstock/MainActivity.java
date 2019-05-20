@@ -110,7 +110,9 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 this.switchFragment("stockInfoFragment");
                 break;
             case R.id.news:
-                this.switchFragment("newsFragment");
+                 Intent intent=new Intent(MainActivity.this,Main2Activity.class);
+                 startActivity(intent);
+//                this.switchFragment("newsFragment");
                 break;
             case R.id.user:
                 this.switchFragment("userFragment");

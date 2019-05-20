@@ -23,7 +23,9 @@
         </activity>
         <activity android:name=".Registered" />
         <activity android:name=".LoginActivity" />
-        <activity android:name=".StockAvtivity"></activity>
+        <activity android:name=".StockAvtivity" />
+        <activity android:name=".Main2Activity" />
+        <activity android:name=".BrowseNewsActivity"></activity>
     </application>
 
 </manifest>
